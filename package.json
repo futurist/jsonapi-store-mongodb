@@ -29,7 +29,9 @@
     "co": "^4.6.0",
     "debug": "2.2.0",
     "lodash.omit": "3.1.0",
-    "mongodb": "2.0.48"
+    "mongodb": "2.0.48",
+    "mongodb-autoincrement": "^1.0.1",
+    "mongoose": "^4.7.7"
   },
   "devDependencies": {
     "mocha": "2.2.5",
