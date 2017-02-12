@@ -12,37 +12,22 @@ it('should query tree right', function() {
     buildQueryFromTree(testTree),
     [
       {
-        '$lookup': {
-          from: 'form_lahuojihua',
-          localField: 'parentID.id',
-          foreignField: 'id',
-          as: '__parentID'
-        }
+        from: 'form_lahuojihua',
+        localField: 'parentID.id',
+        foreignField: 'id',
+        as: '__parentID'
       },
       {
-        '$unwind': '$__parentID'
+        from: 'form_charger',
+        localField: '__parentID.maker.id',
+        foreignField: 'id',
+        as: '__parentID/maker'
       },
       {
-        '$lookup': {
-          from: 'form_charger',
-          localField: '__parentID.maker.id',
-          foreignField: 'id',
-          as: '__parentID/maker'
-        }
-      },
-      {
-        '$unwind': '$__parentID/maker'
-      },
-      {
-        '$lookup': {
-          from: 'form_charger',
-          localField: '__parentID/maker.leader.id',
-          foreignField: 'id',
-          as: '__parentID/maker/leader'
-        }
-      },
-      {
-        '$unwind': '$__parentID/maker/leader'
+        from: 'form_charger',
+        localField: '__parentID/maker.leader.id',
+        foreignField: 'id',
+        as: '__parentID/maker/leader'
       }
     ]
   )
